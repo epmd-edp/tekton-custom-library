@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: github-gin-go-app-review
+  name: github-go-gin-app-review
 spec:
   workspaces:
     - name: shared-workspace
