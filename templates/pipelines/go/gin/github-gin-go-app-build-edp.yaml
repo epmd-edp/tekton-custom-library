@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: github-gin-go-app-build-edp
+  name: github-go-gin-app-build-edp
 spec:
   workspaces:
     - name: shared-workspace
