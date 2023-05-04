@@ -3,8 +3,7 @@ fullnameOverride: ""
 
 global:
   gitProvider: github
-  dnsWildCard: ""
-  gerritSSHPort: "30003"
+  dnsWildCard: eks-sandbox.aws.main.edp.projects.epam.com
 
 github:
   # -- The GitHub host, adjust this if you run a GitHub enterprise. Default: github.com
@@ -12,10 +11,3 @@ github:
   webhook:
     # -- Existing secret which holds GitHub integration credentials: Username, Access Token, Secret String and Private SSH Key
     existingSecret: github
-
-gitlab:
-  # -- The GitLab host, adjust this if you run a GitLab enterprise. Default: gitlab.com
-  host: git.epam.com
-  webhook:
-    # -- Existing secret which holds GitLab integration credentials: Username, Access Token, Secret String and Private SSH Key
-    existingSecret: gitlab
