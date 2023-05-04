@@ -12,63 +12,43 @@ spec:
       default: https://tekton-{{ .Release.Namespace }}.{{ .Values.global.dnsWildCard }}/#/namespaces/$(context.pipelineRun.namespace)/pipelineruns/$(context.pipelineRun.name)
       type: string
     - name: git-source-url
-      default: "https://github.com/epmd-edp/go-go-operator-sdk"
+      default: "https://github.com/epmd-edp/go-go-beego"
       description: git url to clone
       type: string
     - name: git-source-revision
       description: 'git revision to checkout (branch, tag, sha, ref…)'
       default: "master"
       type: string
-    - name: SONAR_URL
-      default: 'http://sonar.{{ .Release.Namespace }}:9000'
-      description: SonarQube url for static code analysis
-      type: string
-    - name: NEXUS_URL
-      default: 'http://nexus.{{ .Release.Namespace }}:8081'
-      description: Nexus url
-      type: string
     - name: CODEBASE_NAME
-      default: "golang-go"
+      default: "shell"
       description: "Project name"
       type: string
     - name: CODEBASEBRANCH_NAME
-      description: "Codebasebranch name"
+      description: "Codebasebranchname"
       type: string
-    - name: image
-      default: 'golang:1.19.6-bullseye'
-      description: "go image version"
+    - name: shell-image-version
+      default: 'alpine:3.17.1'
       type: string
-    - name: TICKET_NAME_PATTERN
-      description: "Ticket name pattern"
-      default: ""
-    - name: COMMIT_MESSAGE_PATTERN
-      description: "Pattern to validate a commit message"
-      default: ""
-    - name: COMMIT_MESSAGE
-      description: "Commit message"
-      default: ""
-    - name: JIRA_ISSUE_METADATA_PAYLOAD
-      description: "Jira Payload"
-      default: ""
-    - name: JIRA_SERVER
-      description: "Jira server name"
-      default: ""
+    - name: username
+      type: string
+      default: "World"
+      description: "Example parameter"
   tasks:
 
 {{- include "github-build-start" . | nindent 4 }}
 
-    - name: get-version
+    - name: hello
       taskRef:
-        kind: Task
-        name: get-version-edp
+        name: hello
       runAfter:
-        - init-values
+      - init-values
       params:
-        - name: CODEBASEBRANCH_NAME
-          value: $(params.CODEBASEBRANCH_NAME)
-
-{{ include "build-pipeline-end" . | nindent 4 }}
-
-{{ include "finally-block-edp" . | nindent 2 }}
+      - name: BASE_IMAGE
+        value: "$(params.shell-image-version)"
+      - name: username
+        value: "$(params.username)"
+      workspaces:
+        - name: source
+          workspace: shared-workspace
 
 {{ end }}
