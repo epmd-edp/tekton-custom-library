@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: github-go-gin-app-review
+  name: github-go-abc-app-review
 spec:
   workspaces:
     - name: shared-workspace
@@ -58,7 +58,7 @@ spec:
 
 {{- include "github-review-start" . | nindent 4 }}
 
-{{- include "golang-review-operator-gin-common" . | nindent 4 }}
+{{- include "golang-review-operator-abc-common" . | nindent 4 }}
 
     - name: sonar
       taskRef:
