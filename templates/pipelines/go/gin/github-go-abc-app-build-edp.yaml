@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: github-go-gin-app-build-edp
+  name: github-go-abc-app-build-edp
 spec:
   workspaces:
     - name: shared-workspace
@@ -67,7 +67,7 @@ spec:
         - name: CODEBASEBRANCH_NAME
           value: $(params.CODEBASEBRANCH_NAME)
 
-{{- include "golang-build-operator-gin-common" . | nindent 4 }}
+{{- include "golang-build-operator-abc-common" . | nindent 4 }}
 
 {{ include "build-pipeline-end" . | nindent 4 }}
 
