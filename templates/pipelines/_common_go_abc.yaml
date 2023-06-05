@@ -74,7 +74,7 @@
       value: "$(tasks.init-values.results.TENANT_NAME)/$(params.CODEBASE_NAME)"
 {{- end -}}
 
-{{- define "golang-review-operator-gin-common" -}}
+{{- define "golang-review-operator-abc-common" -}}
 - name: build
   taskRef:
     kind: Task
